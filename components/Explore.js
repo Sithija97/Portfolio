@@ -8,12 +8,15 @@ import {
   Platform,
   StatusBar,
   ScrollView,
-  Image
+  Image,
+  Dimensions
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 //subcomponents
 import CategoryScreen from "./subComponents/Category";
+
+const { height, width } = Dimensions.get('window')
 
 export default class ExploreScreen extends React.Component {
   UNSAFE_componentWillMount() {
@@ -68,6 +71,16 @@ export default class ExploreScreen extends React.Component {
               <Text style={styles.AirbnbIntroT}>
                 Introducing Airbnb Plus
               </Text>
+              <Text style={{marginTop:10, fontWeight:"100"}}>
+                A new Selection of homes verified for quality and comfort 
+              </Text>
+            <View style ={styles.HomeImg}>
+              <Image
+                source={require('../assets/home.jpg')}
+                style={{flex:1,width:null, height:null, resizeMode:'cover', borderRadius:6}}
+              />
+            </View>
+
             </View>
           </ScrollView>
         </View>
@@ -123,5 +136,11 @@ const styles = StyleSheet.create({
   AirbnbIntroT:{
     fontWeight:'700',
     fontSize:24
+  },
+
+  HomeImg:{
+    width: width-40,
+    height:200,
+    marginTop:20
   }
 });
