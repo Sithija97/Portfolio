@@ -2,10 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 //navigation
-import { createAppContainer } from 'react-navigation';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createAppContainer,createBottomTabNavigator } from 'react-navigation';
 
-class App extends React.Component{
+//components
+import ExploreScreen from './components/Explore';
+import SavedScreen from './components/Saved';
+import TripsScreen from './components/Trips';
+import InboxScreen from './components/Inbox';
+
+export default class App extends React.Component{
   render(){
     return(
       <AppContainer/>
@@ -13,26 +18,23 @@ class App extends React.Component{
   }
 }
 
-const AppContainer = createAppContainer(AppTabNavigator);
+
 const AppTabNavigator = createBottomTabNavigator({
   Explore:{
-
+    screen:ExploreScreen
   },
-  Svaed:{
-
+  Saved:{
+    screen:SavedScreen
   },
   Trips:{
-
+    screen:TripsScreen
   },
   Inbox:{
-    
+    screen:InboxScreen
   }
+},{
+  initialRouteName:"Explore"
 })
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+const AppContainer = createAppContainer(AppTabNavigator);
+
