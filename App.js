@@ -72,7 +72,8 @@ const AppTabNavigator = createBottomTabNavigator({
     activeTintColor:"red",
     inactiveTintColor:"grey",
     style:{
-      elevation:5
+      elevation:5,
+      padding:5
     }
   }
 })

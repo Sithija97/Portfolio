@@ -1,8 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, TextInput } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, TextInput, Platform, StatusBar } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons"
 
 export default class ExploreScreen extends React.Component {
+    UNSAFE_componentWillMount(){
+        this.headerHeight = 80
+        if(Platform=='android'){
+            this.headerHeight=100 + StatusBar.currentHeight
+        }
+    }
   render() {
     return (
       <SafeAreaView style={{flex:1}}>
@@ -28,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  header:{height:80, backgroundColor:"white",
+  header:{height:this.headerHeight , backgroundColor:"white",
   borderBottomWidth:1, borderBottomColor:"#dddddd"},
   input:{
       flex:1,
@@ -43,6 +49,7 @@ const styles = StyleSheet.create({
       marginHorizontal:20,
       backgroundColor:'white',
       marginTop:30,
+      marginTop:Platform.OS == 'android' ? 30 : null
       
   }
 });
