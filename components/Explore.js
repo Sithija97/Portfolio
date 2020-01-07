@@ -45,17 +45,29 @@ export default class ExploreScreen extends React.Component {
 
             <View style={styles.ScrollConatiner}>
               <ScrollView
-              horizontal="true">
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              >
                 <CategoryScreen
                   ImageUrl={require("../assets/home.jpg")}
                   name="Home"
                 />
 
                 <CategoryScreen
-                  ImageUrl={require("../assets/home.jpg")}
-                  name="Home"
+                  ImageUrl={require("../assets/experiences.jpg")}
+                  name="Experiences"
+                />
+
+                <CategoryScreen
+                  ImageUrl={require("../assets/restaurant.jpg")}
+                  name="Restaurant"
                 />
               </ScrollView>
+            </View>
+            <View style={styles.AirbnbIntro}>
+              <Text style={styles.AirbnbIntroT}>
+                Introducing Airbnb Plus
+              </Text>
             </View>
           </ScrollView>
         </View>
@@ -71,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   header: {
-    height: this.headerHeight,
+    height: this.startHeaderHeight,
     backgroundColor: "white",
     borderBottomWidth: 1,
     borderBottomColor: "#dddddd"
@@ -86,7 +98,6 @@ const styles = StyleSheet.create({
     padding: 12,
     marginHorizontal: 20,
     backgroundColor: "white",
-    marginTop: 30,
     marginTop: Platform.OS == "android" ? 30 : null
   },
   SithiText: {
@@ -105,18 +116,12 @@ const styles = StyleSheet.create({
     height: 130,
     marginTop: 20
   },
-
-  ScrollInsider: {
-    height: 130,
-    width: 130,
-    marginLeft: 20,
-    borderWidth: 0.5,
-    borderColor: "#dddddd"
+  AirbnbIntro:{
+    marginTop:40,
+    paddingHorizontal:20
   },
-
-  HomeText: {
-    flex: 1,
-    paddingLeft: 10,
-    paddingTop: 10
+  AirbnbIntroT:{
+    fontWeight:'700',
+    fontSize:24
   }
 });
