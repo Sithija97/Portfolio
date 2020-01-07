@@ -5,7 +5,7 @@ export default class TripsScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text style={styles.container}>Trips</Text>
+        <Text style={styles.container}ya>Trips</Text>
       </View>
     );
   }
