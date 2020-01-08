@@ -4,6 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons"
 
 //navigation
 import { createAppContainer,createBottomTabNavigator } from 'react-navigation';
+import { createSwitchNavigator } from 'react-navigation';
 
 //components
 import ExploreScreen from './components/Explore';
@@ -19,7 +20,6 @@ export default class App extends React.Component{
     );
   }
 }
-
 
 const AppTabNavigator = createBottomTabNavigator({
   Explore:{
