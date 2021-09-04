@@ -24,6 +24,7 @@ body {
 }
 
 .container {
+  width: 30% !important;
   display: flex;
   list-style: none;
 }

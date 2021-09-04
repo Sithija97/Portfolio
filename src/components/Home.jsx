@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ReactPaginate from 'react-paginate';
 import Card from "./Card.jsx";
 import Footer from "./Footer.jsx";
+import Loader from "./Loader.jsx";
 import SearchForm from "./SearchForm.jsx";
 
 function Home() {
@@ -19,7 +20,7 @@ function Home() {
                 `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${term}&page=${currentPage}&api-key=${process.env.REACT_APP_ARTICLES_API_KEY}`
             );
             const articles = await res.json();
-            // console.log(articles.response.docs);
+            console.log(articles.response.docs);
             var nbPages = Math.round(articles.response.meta.hits / 10);
             console.log(articles.response.meta.hits);
             // setPageCount(nbPages);
@@ -35,9 +36,9 @@ function Home() {
         fetchArticles();
     }, [term]);
 
-    const handlePageChange = (selectedObject) => {
-        setcurrentPage(selectedObject.selected);
-        fetchArticles();
+    const handlePageChange = async (selectedObject) => {
+        await setcurrentPage(selectedObject.selected);
+        await fetchArticles();
     };
     return (
         <React.Fragment>
@@ -51,16 +52,15 @@ function Home() {
             </div>
             {
                 isLoading ? (
-                    <h1 className=" font-bold">Loading...</h1>) : (
+                    <Loader />) : (
                     <React.Fragment>
+
                         <div className="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-3 lg:-mx-3 xl:-mx-3 bg-gray-100">
                             {articles.map((article) => {
-                                // here
-                                return (<Card article={article} />)
-
+                                return (<Card key={article._id} article={article} />)
                             })}
                         </div>
-                        <div>
+                        <div className="flex justify-end">
                             <ReactPaginate
                                 pageCount={5}
                                 pageRange={5}
@@ -75,10 +75,11 @@ function Home() {
                                 activeClassName={'active'}
                             />
                         </div>
+                        <Footer />
                     </React.Fragment>
                 )
             }
-            <Footer />
+
         </React.Fragment>
     )
 }
