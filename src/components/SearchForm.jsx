@@ -25,7 +25,9 @@ function SearchForm({ searchText }) {
                         className="h-14 w-96 pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" placeholder="Search anything..." />
                 </form>
                 <div className="absolute top-2 right-2">
-                    <button type="submit" className="h-10 w-20 text-white rounded-lg bg-indigo-800 hover:bg-indigo-700">Search</button>
+                    <button type="submit"
+                        onClick={handleSubmit}
+                        className="h-10 w-20 text-white rounded-lg bg-indigo-800 hover:bg-indigo-700">Search</button>
                 </div>
             </div>
         </div>
