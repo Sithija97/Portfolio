@@ -60,7 +60,7 @@ function Home() {
                                 return (<Card key={article._id} article={article} />)
                             })}
                         </div>
-                        <div className="flex justify-end">
+                        {/* <div className="flex justify-end">
                             <ReactPaginate
                                 pageCount={5}
                                 pageRange={5}
@@ -74,7 +74,7 @@ function Home() {
                                 disabledClassNae={'disabled'}
                                 activeClassName={'active'}
                             />
-                        </div>
+                        </div> */}
                         <Footer />
                     </React.Fragment>
                 )
