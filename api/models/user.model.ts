@@ -26,7 +26,7 @@ const userSchema = new Schema<IUser>(
     photo: {
       type: String,
       required: [true, "Please add a photo"],
-      default: "",
+      default: "https://i.ibb.co/4pDNDk1/avatar.png",
     },
     authMethod: {
       type: String,

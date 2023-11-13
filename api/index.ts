@@ -1,9 +1,8 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import colors from "colors";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { userRouter } from "./routes/index.js";
+import { issueRouter, userRouter } from "./routes/index.js";
 import { errorHandler, notFound } from "./middleware/index.js";
 import connectDB from "./config/db.js";
 
@@ -19,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/api/users", userRouter);
+app.use("/api/issues", issueRouter);
 
 app.use(notFound);
 app.use(errorHandler);
