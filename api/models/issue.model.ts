@@ -11,7 +11,7 @@ const issueSchema = new Schema<IIssue>(
       type: String,
       default: "",
     },
-    user: {
+    reporter: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,

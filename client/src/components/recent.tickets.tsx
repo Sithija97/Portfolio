@@ -1,10 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { DataElement, data } from "../data";
 import { MdTask } from "react-icons/md";
+import { ISSUES } from "../routes";
 
 export const RecentTickets = () => {
+  const navigate = useNavigate();
+
+  const redirectToIssues = () => navigate(ISSUES);
   return (
-    <div className="w-full col-span-1 relative lg:h-[84vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-y-scroll">
-      <h1 className="font-medium">Recent Tickets</h1>
+    <div
+      className="w-full col-span-1 relative lg:h-[84vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-y-scroll"
+      onClick={redirectToIssues}
+    >
+      <h1 className="font-medium hover:bg-gray-100 w-fit px-4 py-1 rounded-lg cursor-pointer">
+        Recent Tickets
+      </h1>
       <ul>
         {data.map((order: DataElement, id) => (
           <li
