@@ -15,7 +15,7 @@ export const Header = () => {
   const handleProfileMenu = () => setDiplayProfileMenu(!diplayProfileMenu);
 
   return (
-    <nav className="flex items-center justify-between bg-white py-1.5 px-[6%] z-49 sticky top-0 w-full">
+    <nav className="flex items-center justify-between bg-white py-1.5 px-[6%] z-49 relative top-0 w-full">
       {/* left */}
       <div className="flex items-center w-full">
         <img

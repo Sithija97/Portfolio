@@ -9,7 +9,7 @@ export const RecentTickets = () => {
   const redirectToIssues = () => navigate(ISSUES);
   return (
     <div
-      className="w-full col-span-1 relative lg:h-[84vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-y-scroll"
+      className="w-full col-span-1 lg:h-[84vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-y-scroll"
       onClick={redirectToIssues}
     >
       <h1 className="font-medium hover:bg-gray-100 w-fit px-4 py-1 rounded-lg cursor-pointer">
@@ -30,7 +30,7 @@ export const RecentTickets = () => {
                 {order.name.first}
               </p>
             </div>
-            <p className="lg:flex md:hidden absolute right-6 text-sm font-medium">
+            <p className="lg:flex md:hidden absolute right-12 text-sm font-medium">
               {order.date}
             </p>
           </li>
