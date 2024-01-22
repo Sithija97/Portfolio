@@ -5,6 +5,8 @@ import { Button, TextInput } from "../components";
 import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { LOGIN } from "../routes";
+import { useAppDispatch } from "../store/store";
+import { register } from "../store/auth/authslice";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -20,10 +22,24 @@ const validationSchema = Yup.object().shape({
 });
 
 export const Register = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleRegister = (values: registerInputData) => {
-    console.log(values);
+  const handleRegister = async (values: registerInputData) => {
+    const { username, email, password, confirmPassword } = values;
+    if (password !== confirmPassword) {
+      alert("Error : Passwords don't match, please check again.");
+    } else {
+      const response = await dispatch(register({ username, email, password }));
+      if (response.meta.requestStatus === "fulfilled") {
+        alert("Success : User created Successfully");
+        formik.resetForm();
+        redirectToLogin();
+      }
+      if (response.meta.requestStatus === "rejected") {
+        alert(`Error : ${response.payload}`);
+      }
+    }
   };
 
   const redirectToLogin = () => navigate(LOGIN);

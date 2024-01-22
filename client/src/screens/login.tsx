@@ -1,10 +1,15 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { loginInputs } from "../models";
+import { loginInputs, loginWithGoogleInputs } from "../models";
 import logo from "../assets/logo.svg";
 import { Button, SignInWithGoogle, TextInput } from "../components";
 import { useNavigate } from "react-router-dom";
-import { REGISTER } from "../routes";
+import { HOME, REGISTER } from "../routes";
+import { useAppDispatch } from "../store/store";
+import { login, loginWithGoogle } from "../store/auth/authslice";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../config/firebase";
+import { Auth_Method } from "../enums";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,13 +21,45 @@ const validationSchema = Yup.object().shape({
 });
 
 export const Login = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = (values: loginInputs) => {
-    console.log(values);
+  const handleLogin = async (values: loginInputs) => {
+    const response = await dispatch(login(values));
+    if (response.meta.requestStatus === "fulfilled") {
+      formik.resetForm();
+      navigate(HOME);
+    }
+    if (response.meta.requestStatus === "rejected") {
+      alert(`Error : ${response.payload}`);
+    }
   };
 
-  const handleSignInWithGoogle = () => {};
+  const handleSignInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const { displayName, email, photoURL } = result.user;
+
+      const userObj: loginWithGoogleInputs = {
+        username: displayName!,
+        email: email!,
+        photo: photoURL!,
+        authMethod: Auth_Method.GOOGLE,
+      };
+
+      const response = await dispatch(loginWithGoogle(userObj));
+
+      if (response.meta.requestStatus === "fulfilled") {
+        navigate(HOME);
+      }
+      if (response.meta.requestStatus === "rejected") {
+        alert(`Error : ${response.payload}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const redirectToRegister = () => navigate(REGISTER);
 

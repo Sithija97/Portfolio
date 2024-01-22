@@ -5,3 +5,5 @@ export * from "./bar.chart";
 export * from "./text.Input";
 export * from "./button";
 export * from "./google.signin";
+export * from "./spinner";
+export * from "./profile";

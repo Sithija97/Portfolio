@@ -2,12 +2,17 @@ import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { HOME } from "../routes";
 import { IoSearch } from "react-icons/io5";
-import { Avatar } from ".";
+import { Avatar, ProfileMenu } from ".";
+import { useState } from "react";
 
 export const Header = () => {
   const navigate = useNavigate();
 
   const navigateToHome = () => navigate(HOME);
+
+  const [diplayProfileMenu, setDiplayProfileMenu] = useState<boolean>(false);
+
+  const handleProfileMenu = () => setDiplayProfileMenu(!diplayProfileMenu);
 
   return (
     <nav className="flex items-center justify-between bg-white py-1.5 px-[6%] z-49 sticky top-0 w-full">
@@ -33,9 +38,11 @@ export const Header = () => {
       </div>
 
       {/* right */}
-      <div onClick={navigateToHome}>
+      <div onClick={handleProfileMenu}>
         <Avatar styles="w-10 rounded-full block cursor-pointer relative" />
       </div>
+
+      {diplayProfileMenu && <ProfileMenu />}
     </nav>
   );
 };

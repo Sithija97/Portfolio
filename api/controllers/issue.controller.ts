@@ -23,7 +23,11 @@ const createIssue = asyncHandler(async (req: CustomRequest, res: Response) => {
 
 const getIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
   const issues = await Issue.find({ reporter: req.user._id })
-    .populate("reporter")
+    .select("-__v")
+    .populate({
+      path: "reporter",
+      select: "-__v",
+    })
     .lean()
     .sort("-createdAt");
 
@@ -32,7 +36,11 @@ const getIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
 
 const getAllIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
   const issues = await Issue.find()
-    .populate("reporter")
+    .select("-__v")
+    .populate({
+      path: "reporter",
+      select: "-__v",
+    })
     .lean()
     .sort("-createdAt");
 
