@@ -47,3 +47,24 @@ export type initialAuthState = {
   changePasswordLoading: boolean;
   message: string;
 };
+
+export type Reporter = {
+  _id: string;
+  username: string;
+  email: string;
+  photo: string;
+  authMethod: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type IIssue = {
+  _id: string;
+  title: string;
+  description: string;
+  reporter: Reporter;
+  status: string;
+  assignee: string | null;
+  createdAt: string;
+  updatedAt: string;
+};

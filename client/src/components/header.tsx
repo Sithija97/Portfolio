@@ -4,9 +4,12 @@ import { HOME } from "../routes";
 import { IoSearch } from "react-icons/io5";
 import { Avatar, ProfileMenu } from ".";
 import { useState } from "react";
+import { RootState, useAppSelector } from "../store/store";
 
 export const Header = () => {
   const navigate = useNavigate();
+
+  const user = useAppSelector((state: RootState) => state.auth.user);
 
   const navigateToHome = () => navigate(HOME);
 
@@ -39,7 +42,10 @@ export const Header = () => {
 
       {/* right */}
       <div onClick={handleProfileMenu}>
-        <Avatar styles="w-10 rounded-full block cursor-pointer relative" />
+        <Avatar
+          styles="w-10 rounded-full block cursor-pointer relative"
+          src={user?.photo}
+        />
       </div>
 
       {diplayProfileMenu && <ProfileMenu />}

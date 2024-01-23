@@ -8,14 +8,14 @@ export const RecentTickets = () => {
 
   const redirectToIssues = () => navigate(ISSUES);
   return (
-    <div
-      className="w-full col-span-1 lg:h-[84vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-y-scroll"
-      onClick={redirectToIssues}
-    >
-      <h1 className="font-medium hover:bg-gray-100 w-fit px-4 py-1 rounded-lg cursor-pointer">
+    <div className="w-full col-span-1 lg:h-[84vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-y-scroll">
+      <h1
+        className="font-medium hover:bg-gray-100 w-fit px-4 py-1 rounded-lg cursor-pointer"
+        onClick={redirectToIssues}
+      >
         Recent Tickets
       </h1>
-      <ul>
+      <ul className="relative">
         {data.map((order: DataElement, id) => (
           <li
             key={id}

@@ -1,5 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Layout, Login, Register, Profile, Issues } from "../screens";
+import {
+  Home,
+  Layout,
+  Login,
+  Register,
+  Profile,
+  Issues,
+  AddIssue,
+} from "../screens";
 
 export const ROOT = "/";
 export const LOGIN = "/login";
@@ -8,6 +16,7 @@ export const REGISTER = "/register";
 export const PROTECTED = "/protected";
 export const HOME = "/protected/home";
 export const ISSUES = "/protected/issues";
+export const ADD_ISSUE = "/protected/add-issue";
 export const PROFILE = "/protected/profile/:id?";
 
 export const router = createBrowserRouter([
@@ -29,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: ISSUES,
         element: <Issues />,
+      },
+      {
+        path: ADD_ISSUE,
+        element: <AddIssue />,
       },
     ],
   },

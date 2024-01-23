@@ -26,7 +26,7 @@ const getIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
     .select("-__v")
     .populate({
       path: "reporter",
-      select: "-__v",
+      select: "-__v, -password",
     })
     .lean()
     .sort("-createdAt");
@@ -39,7 +39,7 @@ const getAllIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
     .select("-__v")
     .populate({
       path: "reporter",
-      select: "-__v",
+      select: "-__v, -password",
     })
     .lean()
     .sort("-createdAt");
