@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { DataElement, data } from "../data";
+import { data2 } from "../data";
 import { MdTask } from "react-icons/md";
 import { ISSUES } from "../routes";
+import { IIssue } from "../models";
+import moment from "moment";
 
 export const RecentTickets = () => {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ export const RecentTickets = () => {
         Recent Tickets
       </h1>
       <ul className="relative">
-        {data.map((order: DataElement, id) => (
+        {data2.map((issue: IIssue, id) => (
           <li
             key={id}
             className="bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer"
@@ -25,13 +27,10 @@ export const RecentTickets = () => {
               <MdTask className="text-blue-500" size={20} />
             </div>
             <div className="ml-4">
-              <p className="text-gray-800 font-bold">${order.total}</p>
-              <p className="text-gray-400 text-sm font-medium">
-                {order.name.first}
-              </p>
+              <p className="text-gray-800 font-bold">{issue.title}</p>
             </div>
             <p className="lg:flex md:hidden absolute right-12 text-sm font-medium">
-              {order.date}
+              {moment(issue.updatedAt).fromNow()}
             </p>
           </li>
         ))}

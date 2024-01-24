@@ -4,6 +4,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { ADD_ISSUE } from "../routes";
 import { IIssue } from "../models";
+import moment from "moment";
 
 export type DataElement = {
   id: number;
@@ -53,7 +54,6 @@ export const Issues = () => {
                 </div>
                 <div className="pl-4">
                   <p className="text-gray-800 font-bold">{issue.title}</p>
-                  {/* <p className="text-gray-800 text-sm">{order.name.first}</p> */}
                 </div>
               </div>
 
@@ -70,7 +70,9 @@ export const Issues = () => {
                   {issue.status}
                 </span>
               </p>
-              <p className="hidden md:flex font-medium">{issue.updatedAt}</p>
+              <p className="hidden md:flex font-medium">
+                {moment(issue.updatedAt).fromNow()}
+              </p>
               <p className="hidden md:flex font-medium">
                 {issue.reporter.username}
               </p>
