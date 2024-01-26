@@ -38,16 +38,6 @@ export type IUser = {
   authMethod: string;
 };
 
-export type initialAuthState = {
-  user: IUser | null;
-  isError: boolean;
-  isSuccess: boolean;
-  isLoading: boolean;
-  updateUserLoading: boolean;
-  changePasswordLoading: boolean;
-  message: string;
-};
-
 export type Reporter = {
   _id: string;
   username: string;
@@ -67,4 +57,22 @@ export type IIssue = {
   assignee: string | null;
   createdAt: string;
   updatedAt: string;
+};
+
+export type initialAuthState = {
+  user: IUser | null;
+  isError: boolean;
+  isSuccess: boolean;
+  isLoading: boolean;
+  updateUserLoading: boolean;
+  changePasswordLoading: boolean;
+  message: string;
+};
+
+export type initialIssueState = {
+  issues: IIssue[];
+  isError: false;
+  isSuccess: false;
+  isLoading: false;
+  message: "";
 };
