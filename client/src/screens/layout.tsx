@@ -1,6 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { Header } from "../components";
-import { RootState, useAppSelector } from "../store/store";
+import { RootState, useAppDispatch, useAppSelector } from "../store/store";
+import { useEffect } from "react";
+import { getIssues } from "../store/issues/issueSlice";
 
 type IProps = {
   children: React.ReactNode;
@@ -17,6 +19,16 @@ export const PrivateRoute = ({ children }: IProps) => {
 };
 
 export const Layout = () => {
+  const dispatch = useAppDispatch();
+
+  const loadData = async () => {
+    await dispatch(getIssues());
+  };
+
+  useEffect(() => {
+    loadData();
+  });
+
   return (
     <PrivateRoute>
       <Header />

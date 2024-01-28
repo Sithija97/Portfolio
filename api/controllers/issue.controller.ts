@@ -29,7 +29,7 @@ const getIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
       select: "-__v, -password",
     })
     .lean()
-    .sort("-createdAt");
+    .sort("-updatedAt");
 
   res.status(200).json(issues);
 });
@@ -42,7 +42,7 @@ const getAllIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
       select: "-__v, -password",
     })
     .lean()
-    .sort("-createdAt");
+    .sort("-updatedAt");
 
   res.status(200).json(issues);
 });

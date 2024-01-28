@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJs,
@@ -9,6 +9,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { RootState, useAppSelector } from "../store/store";
+import { IssueTypes } from "../enums";
+import { countByStatus } from "../utils";
 
 ChartJs.register(
   CategoryScale,
@@ -23,14 +26,26 @@ export const BarChart = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [chartData, setChartData] = useState<any>({ datasets: [] });
   const [chartOptions, setChartOptions] = useState({});
+  const { issues } = useAppSelector((state: RootState) => state.issues);
+
+  // Count issues for each status
+  const openIssueCount = countByStatus(issues, IssueTypes.OPEN);
+  const inProgressCount = countByStatus(issues, IssueTypes.INPROGRESS);
+  const resolvedCount = countByStatus(issues, IssueTypes.RESOLVED);
+  const closedCount = countByStatus(issues, IssueTypes.CLOSED);
 
   useEffect(() => {
     setChartData({
-      labels: ["Open", "In Progress", "Resolved"],
+      labels: [
+        IssueTypes.OPEN,
+        IssueTypes.INPROGRESS,
+        IssueTypes.RESOLVED,
+        IssueTypes.CLOSED,
+      ],
       datasets: [
         {
           label: "Ticket count",
-          data: [18127, 22201, 19490],
+          data: [openIssueCount, inProgressCount, resolvedCount, closedCount],
           borderColor: "rgb(159, 51, 255)",
           backgroundColor: "rgb(159, 51, 255, 0.8",
         },
@@ -49,7 +64,8 @@ export const BarChart = () => {
       maintainAspectRatio: false,
       responsive: true,
     });
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [issues]);
 
   return (
     <>

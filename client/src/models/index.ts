@@ -71,8 +71,12 @@ export type initialAuthState = {
 
 export type initialIssueState = {
   issues: IIssue[];
-  isError: false;
-  isSuccess: false;
-  isLoading: false;
-  message: "";
+  issuesByUser: IIssue[];
+  isGetIssuesError: boolean;
+  isGetIssuesByUserError: boolean;
+  isGetIssuesSuccess: boolean;
+  isGetIssuesByUserSuccess: boolean;
+  isGetIssuesLoading: boolean;
+  isGetIssuesByUserLoading: boolean;
+  message: string;
 };
