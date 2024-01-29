@@ -1,11 +1,12 @@
 import { MdTask } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { ADD_ISSUE } from "../routes";
+import { ADD_ISSUE, ISSUE } from "../routes";
 import { IIssue } from "../models";
 import { RootState, useAppSelector } from "../store/store";
 import { Spinner } from "../components";
 import moment from "moment";
+import { FaPenToSquare } from "react-icons/fa6";
 
 export type DataElement = {
   id: number;
@@ -28,15 +29,21 @@ export const Issues = () => {
   const redirectToAddIssue = () => {
     navigate(ADD_ISSUE);
   };
+
+  const redirectToIssueDetails = (issueId: string) => {
+    const issueDetailsRoute = `${ISSUE.replace("/:id", "")}/${issueId}`;
+    navigate(issueDetailsRoute);
+  };
+
   return (
     <div className="w-full h-full p-5">
       <div className="flex items-center justify-between pb-4">
         <h2 className="font-semibold">Issues</h2>
         <button
-          className="bg-purple-400 py-1 px-2 rounded-lg "
+          className="flex items-center gap-2 bg-purple-400 py-1 px-2 rounded-lg "
           onClick={redirectToAddIssue}
         >
-          Create Issue
+          <FaPenToSquare /> Create Issue
         </button>
       </div>
       <div className="w-full m-auto p-4 mb-4 border rounded-lg bg-white h-[80%]  xl:h-[84%] overflow-y-auto">
@@ -58,7 +65,10 @@ export const Issues = () => {
                 key={id}
                 className="bg-gray-50 hover:bg-gray-100 rounded-lg  my-3 p-2 grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer"
               >
-                <div className="flex items-center">
+                <div
+                  className="flex items-center"
+                  onClick={() => redirectToIssueDetails(issue._id)}
+                >
                   <div className="bg-purple-100 p-3 rounded-lg">
                     <MdTask className="text-purple-500" size={20} />
                   </div>

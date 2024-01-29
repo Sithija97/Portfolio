@@ -4,3 +4,10 @@ import { IIssue } from "../models";
 export const countByStatus = (issues: IIssue[], status: string) => {
   return issues.filter((issue) => issue.status === status).length;
 };
+
+// Function to get the percentage
+export const percentageByStatus = (issues: IIssue[], status: string) => {
+  const count = issues.filter((issue) => issue.status === status).length;
+  const percentage = (count / issues.length) * 100;
+  return percentage;
+};
