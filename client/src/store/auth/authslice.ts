@@ -18,6 +18,7 @@ const initialState: initialAuthState = {
   updateUserLoading: false,
   changePasswordLoading: false,
   message: "",
+  registeredUsers: [],
 };
 
 export const register = createAsyncThunk(
@@ -77,6 +78,19 @@ export const changePassword = createAsyncThunk(
   async (payload: changePasswordInputs, thunkAPI) => {
     try {
       const response = await authService.changePassword(payload);
+      return response.data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getRegisteredUsers = createAsyncThunk(
+  "auth/get-registered-users",
+  async (_, thunkAPI) => {
+    try {
+      const response = await authService.getRegisterdUsers();
       return response.data;
     } catch (error: any) {
       const message = error.response.data.message;

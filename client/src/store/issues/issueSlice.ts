@@ -13,6 +13,7 @@ const initialState: initialIssueState = {
   isGetIssuesLoading: false,
   isGetIssuesByUserLoading: false,
   message: "",
+  selectedIssue: null,
 };
 
 export const getIssues = createAsyncThunk(
@@ -44,7 +45,11 @@ export const getIssuesByUser = createAsyncThunk(
 const issuesSlice = createSlice({
   name: "issues",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedReducer: (state, { payload }) => {
+      state.selectedIssue = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getIssues.pending, (state) => {
@@ -76,6 +81,6 @@ const issuesSlice = createSlice({
   },
 });
 
-// export const {} = issuesSlice.actions;
+export const { setSelectedReducer } = issuesSlice.actions;
 
 export default issuesSlice.reducer;

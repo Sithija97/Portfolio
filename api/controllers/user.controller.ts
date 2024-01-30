@@ -199,6 +199,15 @@ const changePassword = asyncHandler(
   }
 );
 
+const getRegisteredUsers = asyncHandler(async (req: Request, res: Response) => {
+  const usersResponse = await User.find().lean();
+  const users = usersResponse.map((user) => ({
+    _id: user._id,
+    username: user.username,
+  }));
+  res.status(200).json(users);
+});
+
 const forgetPassword = () => {};
 const resetPassword = () => {};
 
@@ -213,4 +222,5 @@ export {
   changePassword,
   forgetPassword,
   resetPassword,
+  getRegisteredUsers,
 };

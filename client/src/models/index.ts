@@ -48,6 +48,11 @@ export type Reporter = {
   updatedAt: string;
 };
 
+export type RegisterdUser = {
+  _id: string;
+  username: string;
+};
+
 export type IIssue = {
   _id: string;
   title: string;
@@ -67,6 +72,7 @@ export type initialAuthState = {
   updateUserLoading: boolean;
   changePasswordLoading: boolean;
   message: string;
+  registeredUsers: RegisterdUser[];
 };
 
 export type initialIssueState = {
@@ -79,4 +85,5 @@ export type initialIssueState = {
   isGetIssuesLoading: boolean;
   isGetIssuesByUserLoading: boolean;
   message: string;
+  selectedIssue: null | IIssue;
 };

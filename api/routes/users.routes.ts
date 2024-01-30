@@ -10,6 +10,7 @@ import {
   resetPassword,
   loginWithGoogle,
   updateUser,
+  getRegisteredUsers,
 } from "../controllers/user.controller.js";
 import { protect } from "../middleware/index.js";
 const userRouter = express.Router();
@@ -24,5 +25,6 @@ userRouter.patch("/updateuser", protect, updateUser);
 userRouter.patch("/changepassword", protect, changePassword);
 userRouter.post("/forgetpassword", protect, forgetPassword);
 userRouter.put("/resetpassword/:resetToken", resetPassword);
+userRouter.get("/all", protect, getRegisteredUsers);
 
 export { userRouter };

@@ -34,12 +34,18 @@ const changePassword = async (payload: changePasswordInputs) => {
   return response;
 };
 
+const getRegisterdUsers = async () => {
+  const response = await axios.get(`${BASE_URL}/all`);
+  return response;
+};
+
 const authService = {
   register,
   login,
   loginWithGoogle,
   update,
   changePassword,
+  getRegisterdUsers,
 };
 
 export default authService;
