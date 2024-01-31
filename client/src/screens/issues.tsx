@@ -3,10 +3,11 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { ADD_ISSUE, ISSUE } from "../routes";
 import { IIssue } from "../models";
-import { RootState, useAppSelector } from "../store/store";
-import { Spinner } from "../components";
+import { RootState, useAppDispatch, useAppSelector } from "../store/store";
+import { Badge, Spinner } from "../components";
 import moment from "moment";
 import { FaPenToSquare } from "react-icons/fa6";
+import { setSelectedReducer } from "../store/issues/issueSlice";
 
 export type DataElement = {
   id: number;
@@ -20,6 +21,7 @@ export type DataElement = {
   date: string;
 };
 export const Issues = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { issues, isGetIssuesLoading } = useAppSelector(
@@ -30,8 +32,9 @@ export const Issues = () => {
     navigate(ADD_ISSUE);
   };
 
-  const redirectToIssueDetails = (issueId: string) => {
-    const issueDetailsRoute = `${ISSUE.replace("/:id", "")}/${issueId}`;
+  const redirectToIssueDetails = (issue: IIssue) => {
+    const issueDetailsRoute = `${ISSUE.replace("/:id", "")}/${issue._id}`;
+    dispatch(setSelectedReducer(issue));
     navigate(issueDetailsRoute);
   };
 
@@ -67,7 +70,7 @@ export const Issues = () => {
               >
                 <div
                   className="flex items-center"
-                  onClick={() => redirectToIssueDetails(issue._id)}
+                  onClick={() => redirectToIssueDetails(issue)}
                 >
                   <div className="bg-purple-100 p-3 rounded-lg">
                     <MdTask className="text-purple-500" size={20} />
@@ -78,17 +81,7 @@ export const Issues = () => {
                 </div>
 
                 <p className="text-gray-600 sm:text-center text-right text-xs">
-                  <span
-                    className={
-                      issue.status == "Completed"
-                        ? "bg-green-200 py-1 px-2 rounded-lg font-bold"
-                        : issue.status == "Open"
-                        ? "bg-blue-200 py-1 px-2 rounded-lg font-bold"
-                        : "bg-yellow-200 py-1 px-2 rounded-lg font-bold"
-                    }
-                  >
-                    {issue.status}
-                  </span>
+                  <Badge status={issue.status} />
                 </p>
                 <p className="hidden md:flex font-medium">
                   {moment(issue.updatedAt).fromNow()}
