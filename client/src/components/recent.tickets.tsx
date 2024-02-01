@@ -10,7 +10,7 @@ export const RecentTickets = () => {
   const navigate = useNavigate();
 
   const { issues, isGetIssuesLoading } = useAppSelector(
-    (state: RootState) => state.issues
+    (state: RootState) => state.store.issues
   );
 
   const redirectToIssues = () => navigate(ISSUES);
@@ -39,9 +39,9 @@ export const RecentTickets = () => {
                 <MdTask className="text-blue-500" size={20} />
               </div>
               <div className="ml-4">
-                <p className="text-gray-800 font-bold">{issue.title}</p>
+                <p className="text-gray-800 lighter">{issue.title}</p>
               </div>
-              <p className="lg:flex md:hidden absolute right-12 text-sm font-medium">
+              <p className="lg:flex md:hidden absolute right-12 text-sm lighter">
                 {moment(issue.updatedAt).fromNow()}
               </p>
             </li>

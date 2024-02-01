@@ -25,7 +25,7 @@ export const Issues = () => {
   const navigate = useNavigate();
 
   const { issues, isGetIssuesLoading } = useAppSelector(
-    (state: RootState) => state.issues
+    (state: RootState) => state.store.issues
   );
 
   const redirectToAddIssue = () => {
@@ -63,7 +63,7 @@ export const Issues = () => {
           </div>
         ) : (
           <ul>
-            {issues.map((issue: IIssue, id) => (
+            {issues.map((issue: IIssue, id: number) => (
               <li
                 key={id}
                 className="bg-gray-50 hover:bg-gray-100 rounded-lg  my-3 p-2 grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer"
@@ -76,20 +76,20 @@ export const Issues = () => {
                     <MdTask className="text-purple-500" size={20} />
                   </div>
                   <div className="pl-4">
-                    <p className="text-gray-800 font-bold">{issue.title}</p>
+                    <p className="text-gray-800 lighter">{issue.title}</p>
                   </div>
                 </div>
 
                 <p className="text-gray-600 sm:text-center text-right text-xs">
                   <Badge status={issue.status} />
                 </p>
-                <p className="hidden md:flex font-medium">
+                <p className="hidden md:flex lighter">
                   {moment(issue.updatedAt).fromNow()}
                 </p>
-                <p className="hidden md:flex font-medium">
+                <p className="hidden md:flex lighter">
                   {issue.reporter?.username}
                 </p>
-                <div className="sm:flex hidden justify-between items-center font-medium">
+                <div className="sm:flex hidden justify-between items-center lighter">
                   <p>{issue.assignee ? issue.assignee : "Unassigned"}</p>
                   <BsThreeDotsVertical />
                 </div>
