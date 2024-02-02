@@ -1,5 +1,3 @@
-import { MdTask } from "react-icons/md";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { ADD_ISSUE, ISSUE } from "../routes";
 import { IIssue } from "../models";
@@ -8,6 +6,7 @@ import { Badge, Spinner } from "../components";
 import moment from "moment";
 import { FaPenToSquare } from "react-icons/fa6";
 import { setSelectedReducer } from "../store/issues/issueSlice";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 
 export type DataElement = {
   id: number;
@@ -39,65 +38,114 @@ export const Issues = () => {
   };
 
   return (
-    <div className="w-full h-full p-5">
+    <div className="w-full h-full p-5 ">
       <div className="flex items-center justify-between pb-4">
         <h2 className="font-semibold">Issues</h2>
         <button
-          className="flex items-center gap-2 bg-purple-400 py-1 px-2 rounded-lg "
+          className="flex items-center gap-2 bg-blue-400 py-1 px-2"
           onClick={redirectToAddIssue}
         >
           <FaPenToSquare /> Create Issue
         </button>
       </div>
-      <div className="w-full m-auto p-4 mb-4 border rounded-lg bg-white h-[80%]  xl:h-[84%] overflow-y-auto">
-        <div className="my-3 p-2 grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer">
-          <span className="font-medium">Ticket Name</span>
-          <span className="sm:text-center text-right font-medium">Status</span>
-          <span className="hidden sm:grid font-medium">Last Updated</span>
-          <span className="hidden sm:grid font-medium">Reporter</span>
-          <span className="hidden md:grid font-medium">Assignee</span>
-        </div>
-        {isGetIssuesLoading ? (
-          <div className="flex items-center justify-center h-full">
-            <Spinner />
-          </div>
-        ) : (
-          <ul>
-            {issues.map((issue: IIssue, id: number) => (
-              <li
-                key={id}
-                className="bg-gray-50 hover:bg-gray-100 rounded-lg  my-3 p-2 grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer"
-              >
-                <div
-                  className="flex items-center"
-                  onClick={() => redirectToIssueDetails(issue)}
-                >
-                  <div className="bg-purple-100 p-3 rounded-lg">
-                    <MdTask className="text-purple-500" size={20} />
-                  </div>
-                  <div className="pl-4">
-                    <p className="text-gray-800 lighter">{issue.title}</p>
-                  </div>
-                </div>
 
-                <p className="text-gray-600 sm:text-center text-right text-xs">
+      <table className="min-w-full divide-y divide-gray-200 overflow-x-auto border border-t-1">
+        <thead className="bg-gray-50 rounded-t-lg">
+          <tr>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+            >
+              Ticket Name
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+            >
+              Status
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+            >
+              Last Updated
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+            >
+              Reporter
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+            >
+              Assignee
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {isGetIssuesLoading ? (
+            <div className="flex items-center justify-center h-full">
+              <Spinner />
+            </div>
+          ) : (
+            issues.map((issue: IIssue, id) => (
+              <tr key={id}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex items-center">
+                    {/* <div className="flex-shrink-0 h-10 w-10">
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src="https://i.pravatar.cc/150?img=1"
+                    alt=""
+                  />
+                </div> */}
+                    <div
+                      className="ml-4 cursor-pointer"
+                      onClick={() => redirectToIssueDetails(issue)}
+                    >
+                      <div className="text-sm font-medium text-gray-900">
+                        {issue.title}
+                      </div>
+                      {/* <div className="text-sm text-gray-500">
+                        jane.cooper@example.com
+                      </div> */}
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
                   <Badge status={issue.status} />
-                </p>
-                <p className="hidden md:flex lighter">
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {moment(issue.updatedAt).fromNow()}
-                </p>
-                <p className="hidden md:flex lighter">
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {issue.reporter?.username}
-                </p>
-                <div className="sm:flex hidden justify-between items-center lighter">
-                  <p>{issue.assignee ? issue.assignee : "Unassigned"}</p>
-                  <BsThreeDotsVertical />
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {issue.assignee ? issue.assignee : "Unassigned"}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  {/* <span className="text-blue-400 hover:text-blue-600">
+                    <RiEdit2Fill size={20} />
+                  </span>
+                  <span className="ml-2 text-red-400 hover:text-red-600">
+                    <MdDelete size={20} />
+                  </span> */}
+                  <HiOutlineDotsVertical />
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };

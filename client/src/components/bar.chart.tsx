@@ -46,8 +46,8 @@ export const BarChart = () => {
         {
           label: "Ticket count",
           data: [openIssueCount, inProgressCount, resolvedCount, closedCount],
-          borderColor: "rgb(159, 51, 255)",
-          backgroundColor: "rgb(159, 51, 255, 0.8",
+          borderColor: "rgb(64, 149, 255)",
+          backgroundColor: "rgb(64, 149, 255, 0.8",
         },
       ],
     });
