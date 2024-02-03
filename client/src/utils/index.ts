@@ -9,5 +9,6 @@ export const countByStatus = (issues: IIssue[], status: string) => {
 export const percentageByStatus = (issues: IIssue[], status: string) => {
   const count = issues.filter((issue) => issue.status === status).length;
   const percentage = (count / issues.length) * 100;
-  return percentage;
+  const roundedPercentage = Math.round(percentage);
+  return roundedPercentage;
 };

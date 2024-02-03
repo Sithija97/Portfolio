@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addIssueInputs } from "../../models";
+import { addIssueInputs, updateIssueParams } from "../../models";
 
 const BASE_URL = "/api/issues";
 
@@ -18,6 +18,14 @@ const getIssuesByUser = async () => {
   return response;
 };
 
+const updateIssue = async (payload: updateIssueParams) => {
+  const { issueId, title, description, status } = payload;
+  const issuePayload = { title, description, status };
+
+  const response = await axios.patch(`${BASE_URL}/${issueId}`, issuePayload);
+  return response;
+};
+
 const deleteIssue = async (issueId: string) => {
   const response = await axios.delete(`${BASE_URL}/${issueId}`);
   return response;
@@ -27,6 +35,7 @@ const IssueService = {
   addIssue,
   getIssues,
   getIssuesByUser,
+  updateIssue,
   deleteIssue,
 };
 

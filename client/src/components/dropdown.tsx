@@ -1,16 +1,32 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 type IProps = {
   isOpen: boolean;
   triggerLabel: string;
+  initialValue: string | undefined;
+  options: string[];
   toggleDropdown: () => void;
+  onChange: (selectedOption: string) => void;
 };
 
 export const Dropdown: FC<IProps> = ({
   isOpen,
   triggerLabel,
+  initialValue,
+  options,
   toggleDropdown,
+  onChange,
 }) => {
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(
+    initialValue
+  );
+
+  const handleOptionClick = (option: string) => {
+    setSelectedOption(option);
+    onChange(option);
+    toggleDropdown();
+  };
+
   return (
     <div className="relative inline-block text-left">
       <button
@@ -18,7 +34,7 @@ export const Dropdown: FC<IProps> = ({
         type="button"
         className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-b-gray-300 rounded-md hover:bg-slate-100 focus:outline-none"
       >
-        {triggerLabel}
+        {selectedOption ? selectedOption : triggerLabel}
         <svg
           className="-mr-1 ml-2 h-5 w-5"
           xmlns="http://www.w3.org/2000/svg"
@@ -36,9 +52,17 @@ export const Dropdown: FC<IProps> = ({
       {isOpen && (
         <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div className="py-1">
-            <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-              Option 1
-            </span>
+            {options.map((option, id) => (
+              <span
+                key={id}
+                onClick={() => handleOptionClick(option)}
+                className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer ${
+                  selectedOption === option ? "bg-gray-100" : ""
+                }`}
+              >
+                {option}
+              </span>
+            ))}
           </div>
         </div>
       )}

@@ -6,8 +6,13 @@ import { RiEdit2Fill } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ResponseStatus } from "../enums";
-import { getIssues, deleteIssue } from "../store/issues/issueSlice";
+import {
+  getIssues,
+  deleteIssue,
+  updateIssue,
+} from "../store/issues/issueSlice";
 import { EDIT_ISSUE, HOME } from "../routes";
+import { options } from "../data";
 
 export const Issue = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +45,17 @@ export const Issue = () => {
     navigate(issueDetailsRoute);
   };
 
+  const handleStatusChange = async (option: string) => {
+    const response =
+      selectedIssue &&
+      (await dispatch(
+        updateIssue({ issueId: selectedIssue?._id, status: option })
+      ));
+    if (response?.meta.requestStatus === ResponseStatus.FULFILLED) {
+      dispatch(getIssues());
+    }
+  };
+
   return (
     <div className="grid xl:grid-cols-4 gap-4 py-10 px-24">
       <div className="xl:col-span-3 bg-white rounded-lg">
@@ -52,7 +68,8 @@ export const Issue = () => {
             </p>
             <p>{moment(selectedIssue?.updatedAt).format("ddd MMM DD YYYY")}</p>
             <p className="flex text-gray-400 pl-3 gap-2">
-              <i>reported by :</i> <p>{selectedIssue?.reporter.username}</p>
+              <i>reported by :</i>
+              <span>{selectedIssue?.reporter.username}</span>
             </p>
           </span>
 
@@ -64,8 +81,11 @@ export const Issue = () => {
       <div className="bg-white rounded-lg p-5 flex xl:flex-col items-center justify-center gap-2">
         <Dropdown
           isOpen={isOpen}
+          options={options}
           triggerLabel="Update Status"
+          initialValue={selectedIssue?.status}
           toggleDropdown={toggleDropdown}
+          onChange={handleStatusChange}
         />
         <button
           className="bg-blue-200 py-1 px-2 rounded-md flex items-center gap-1 w-32 justify-center"

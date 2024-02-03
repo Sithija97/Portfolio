@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addIssueInputs, initialIssueState } from "../../models";
+import {
+  addIssueInputs,
+  initialIssueState,
+  updateIssueParams,
+} from "../../models";
 import IssueService from "../../services/issues";
 
 const initialState: initialIssueState = {
@@ -47,6 +51,19 @@ export const getIssuesByUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await IssueService.getIssues();
+      return response.data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const updateIssue = createAsyncThunk(
+  "issues/updateIssue",
+  async (payload: updateIssueParams, thunkAPI) => {
+    try {
+      const response = await IssueService.updateIssue(payload);
       return response.data;
     } catch (error: any) {
       const message = error.response.data.message;

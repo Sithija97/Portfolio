@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdLibraryAddCheck } from "react-icons/md";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
-import { addIssue, getIssues } from "../store/issues/issueSlice";
+import { getIssues, updateIssue } from "../store/issues/issueSlice";
 import { ResponseStatus } from "../enums";
 import { useNavigate } from "react-router-dom";
 import { HOME } from "../routes";
@@ -34,9 +34,13 @@ export const EditIssue = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { title, description } = formData;
-    const response = await dispatch(addIssue({ title, description }));
+    const response =
+      selectedIssue &&
+      (await dispatch(
+        updateIssue({ issueId: selectedIssue?._id, title, description })
+      ));
 
-    if (response.meta.requestStatus === ResponseStatus.FULFILLED) {
+    if (response?.meta.requestStatus === ResponseStatus.FULFILLED) {
       navigate(HOME);
       dispatch(getIssues());
     } else {

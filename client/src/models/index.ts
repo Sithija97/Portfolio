@@ -35,6 +35,13 @@ export type addIssueInputs = {
   description: string;
 };
 
+export type updateIssueParams = {
+  issueId: string;
+  title?: string;
+  description?: string;
+  status?: string;
+};
+
 export type IUser = {
   _id: string;
   username: string;
@@ -67,6 +74,11 @@ export type IIssue = {
   assignee: string | null;
   createdAt: string;
   updatedAt: string;
+};
+
+export type IOption = {
+  name: string;
+  value: string;
 };
 
 export type initialAuthState = {
