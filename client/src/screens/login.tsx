@@ -135,7 +135,7 @@ export const Login = () => {
         </div>
 
         <div className="flex -my-2">
-          <p className="leading-none text-base font-medium text-purple-700">
+          <p className="leading-none text-base font-medium text-blue-800">
             Forgot Password?
           </p>
         </div>
@@ -152,7 +152,7 @@ export const Login = () => {
           <p className="leading-none text-base font-medium text-gray-500">
             Don't have an account?{" "}
             <span
-              className="text-purple-700 cursor-pointer"
+              className="text-blue-800 cursor-pointer"
               onClick={redirectToRegister}
             >
               Sign Up

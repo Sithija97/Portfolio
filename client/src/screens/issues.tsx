@@ -42,7 +42,7 @@ export const Issues = () => {
       <div className="flex items-center justify-between pb-4">
         <h2 className="font-semibold">Issues</h2>
         <button
-          className="flex items-center gap-2 bg-blue-400 py-1 px-2"
+          className="flex items-center gap-2 bg-blue-100 py-1 px-2 text-blue-800 rounded-sm"
           onClick={redirectToAddIssue}
         >
           <FaPenToSquare /> Create Issue
@@ -99,26 +99,26 @@ export const Issues = () => {
             issues.map((issue: IIssue, id) => (
               <tr key={id}>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    {/* <div className="flex-shrink-0 h-10 w-10">
+                  <span className="flex items-center">
+                    {/* <span className="flex-shrink-0 h-10 w-10">
                   <img
                     className="h-10 w-10 rounded-full"
                     src="https://i.pravatar.cc/150?img=1"
                     alt=""
                   />
-                </div> */}
-                    <div
+                </span> */}
+                    <span
                       className="ml-4 cursor-pointer"
                       onClick={() => redirectToIssueDetails(issue)}
                     >
-                      <div className="text-sm font-medium text-gray-900">
+                      <span className="text-sm font-medium text-gray-900">
                         {issue.title}
-                      </div>
-                      {/* <div className="text-sm text-gray-500">
+                      </span>
+                      {/* <span className="text-sm text-gray-500">
                         jane.cooper@example.com
-                      </div> */}
-                    </div>
-                  </div>
+                      </span> */}
+                    </span>
+                  </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <Badge status={issue.status} />

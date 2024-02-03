@@ -30,6 +30,11 @@ export type changePasswordInputs = {
   password: string;
 };
 
+export type addIssueInputs = {
+  title: string;
+  description: string;
+};
+
 export type IUser = {
   _id: string;
   username: string;

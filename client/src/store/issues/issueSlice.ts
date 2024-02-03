@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { initialIssueState } from "../../models";
+import { addIssueInputs, initialIssueState } from "../../models";
 import IssueService from "../../services/issues";
 
 const initialState: initialIssueState = {
@@ -15,6 +15,19 @@ const initialState: initialIssueState = {
   message: "",
   selectedIssue: null,
 };
+
+export const addIssue = createAsyncThunk(
+  "issues/addIssue",
+  async (payload: addIssueInputs, thunkAPI) => {
+    try {
+      const response = await IssueService.addIssue(payload);
+      return response.data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const getIssues = createAsyncThunk(
   "issues/getIsses",
@@ -34,6 +47,19 @@ export const getIssuesByUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await IssueService.getIssues();
+      return response.data;
+    } catch (error: any) {
+      const message = error.response.data.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const deleteIssue = createAsyncThunk(
+  "issues/deleteIssue",
+  async (issueId: string, thunkAPI) => {
+    try {
+      const response = await IssueService.deleteIssue(issueId);
       return response.data;
     } catch (error: any) {
       const message = error.response.data.message;

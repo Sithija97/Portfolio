@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ISSUES } from "../routes";
 import { IIssue } from "../models";
-import moment from "moment";
 import { RootState, useAppSelector } from "../store/store";
 import { Badge, Spinner } from ".";
 
@@ -47,57 +46,48 @@ export const RecentTickets = () => {
           ))}
         </ul>
       )} */}
-      <table className="min-w-full divide-y divide-gray-200 overflow-x-auto border border-t-1 rounded-lg">
-        <thead className="bg-gray-50 rounded-t-lg">
-          <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
-            >
-              Ticket Name
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
-            >
-              Status
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
-            >
-              Last Updated
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {isGetIssuesLoading ? (
-            <div className="flex items-center justify-center h-full">
-              <Spinner />
-            </div>
-          ) : (
-            issues.map((issue: IIssue, id) => (
+      {isGetIssuesLoading ? (
+        <div className="flex items-center justify-center h-full">
+          <Spinner />
+        </div>
+      ) : (
+        <table className="min-w-full divide-y divide-gray-200 overflow-x-auto border border-t-1 rounded-lg">
+          <thead className="bg-gray-50 rounded-t-lg">
+            <tr>
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+              >
+                Ticket Name
+              </th>
+              <th
+                scope="col"
+                className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+              >
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {issues.map((issue: IIssue, id) => (
               <tr key={id}>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">
+                  <span className="flex items-center">
+                    <span className="ml-4">
+                      <span className="text-sm font-medium text-gray-900">
                         {issue.title}
-                      </div>
-                    </div>
-                  </div>
+                      </span>
+                    </span>
+                  </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <Badge status={issue.status} />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {moment(issue.updatedAt).fromNow()}
-                </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

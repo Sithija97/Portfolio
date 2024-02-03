@@ -6,3 +6,4 @@ export * from "./profile";
 export * from "./issues";
 export * from "./issue";
 export * from "./add.issue";
+export * from "./edit.issue";

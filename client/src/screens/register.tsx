@@ -156,7 +156,7 @@ export const Register = () => {
           <p className="leading-none text-base font-medium text-gray-500">
             Already have an account?{" "}
             <span
-              className="text-purple-700 cursor-pointer"
+              className="text-blue-800 cursor-pointer"
               onClick={redirectToLogin}
             >
               Sign In

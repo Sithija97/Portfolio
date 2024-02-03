@@ -13,8 +13,8 @@ export const SummaryCard: FC<IProps> = ({ count, title, percanatge }) => {
         <p className="text-2xl font-bold">{count}</p>
         <p className="text-gray-600 font-medium">{title}</p>
       </div>
-      <p className="bg-blue-100 flex justify-center items-center p-2 rounded-lg">
-        <span className="text-blue-500 text-lg font-bold">{`+${percanatge}%`}</span>
+      <p className="bg-blue-50 flex justify-center items-center p-2 rounded-lg">
+        <span className="text-blue-800 text-lg font-bold">{`+${percanatge}%`}</span>
       </p>
     </div>
   );

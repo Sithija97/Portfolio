@@ -1,26 +1,25 @@
 import { useState } from "react";
 import { MdLibraryAddCheck } from "react-icons/md";
-import { useAppDispatch } from "../store/store";
+import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { addIssue, getIssues } from "../store/issues/issueSlice";
 import { ResponseStatus } from "../enums";
 import { useNavigate } from "react-router-dom";
 import { HOME } from "../routes";
 
-type IFormData = {
-  title: string;
-  description: string;
-};
-
-export const AddIssue = () => {
+export const EditIssue = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const { selectedIssue } = useAppSelector(
+    (state: RootState) => state.store.issues
+  );
+
   const initialState = {
-    title: "",
-    description: "",
+    title: selectedIssue?.title || "",
+    description: selectedIssue?.description || "",
   };
 
-  const [formData, setFormData] = useState<IFormData>(initialState);
+  const [formData, setFormData] = useState(initialState);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -71,7 +70,7 @@ export const AddIssue = () => {
             className="bg-blue-100 text-blue-800 py-1 px-2 rounded-md flex items-center gap-1 justify-center"
           >
             <MdLibraryAddCheck />
-            Submit New Issue
+            Update Issue
           </button>
         </form>
       </div>

@@ -1,6 +1,6 @@
 import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
-import { HOME } from "../routes";
+import { HOME, ISSUES } from "../routes";
 import { IoSearch } from "react-icons/io5";
 import { Avatar, ProfileMenu } from ".";
 import { useState } from "react";
@@ -12,6 +12,8 @@ export const Header = () => {
   const user = useAppSelector((state: RootState) => state.store.auth.user);
 
   const navigateToHome = () => navigate(HOME);
+
+  const navigateToIssues = () => navigate(ISSUES);
 
   const [diplayProfileMenu, setDiplayProfileMenu] = useState<boolean>(false);
 
@@ -38,6 +40,12 @@ export const Header = () => {
             placeholder="Search"
           />
         </form>
+        <h3
+          className="pl-3 text-sm font-medium cursor-pointer"
+          onClick={navigateToIssues}
+        >
+          Issues
+        </h3>
       </div>
 
       {/* right */}

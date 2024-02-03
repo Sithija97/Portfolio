@@ -12,7 +12,7 @@ type ButtonProps = {
 const Spinner: React.FC = () => {
   return (
     <div className="flex items-center justify-center">
-      <div className="border-gray-300 h-5 w-5 animate-spin rounded-full border-4 border-t-4 border-t-purple-600" />
+      <div className="border-gray-300 h-5 w-5 animate-spin rounded-full border-4 border-t-4 border-t-blue-600" />
     </div>
   );
 };
@@ -29,7 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       onClick={onClick}
       type={type}
-      className={`w-full px-1.5 py-2 bg-purple-600 rounded-lg text-white ${styles}`}
+      className={`w-full px-1.5 py-2 bg-blue-200 rounded-lg text-blue-800 ${styles}`}
       disabled={loading}
     >
       {loading ? (

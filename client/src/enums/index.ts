@@ -9,3 +9,8 @@ export enum IssueTypes {
   RESOLVED = "Resolved",
   CLOSED = "Closed",
 }
+
+export enum ResponseStatus {
+  FULFILLED = "fulfilled",
+  REJECTED = "rejected",
+}

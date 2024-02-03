@@ -8,6 +8,7 @@ import {
   Issues,
   AddIssue,
   Issue,
+  EditIssue,
 } from "../screens";
 
 export const ROOT = "/";
@@ -19,6 +20,7 @@ export const HOME = "/protected/home";
 export const ISSUES = "/protected/issues";
 export const ISSUE = "/protected/issue/:id";
 export const ADD_ISSUE = "/protected/add-issue";
+export const EDIT_ISSUE = "/protected/add-issue/:id";
 export const PROFILE = "/protected/profile/:id?";
 
 export const router = createBrowserRouter([
@@ -48,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: ADD_ISSUE,
         element: <AddIssue />,
+      },
+      {
+        path: EDIT_ISSUE,
+        element: <EditIssue />,
       },
     ],
   },
