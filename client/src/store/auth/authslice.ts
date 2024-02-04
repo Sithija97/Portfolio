@@ -17,6 +17,7 @@ const initialState: initialAuthState = {
   isLoading: false,
   updateUserLoading: false,
   changePasswordLoading: false,
+  registeredUsersLoading: false,
   message: "",
   registeredUsers: [],
 };
@@ -180,6 +181,19 @@ const authSlice = createSlice({
       })
       .addCase(changePassword.rejected, (state, { payload }) => {
         state.changePasswordLoading = false;
+        state.isError = true;
+        state.message = payload as string;
+      })
+      .addCase(getRegisteredUsers.pending, (state) => {
+        state.registeredUsersLoading = true;
+      })
+      .addCase(getRegisteredUsers.fulfilled, (state, { payload }) => {
+        state.registeredUsersLoading = false;
+        state.isSuccess = true;
+        state.registeredUsers = payload;
+      })
+      .addCase(getRegisteredUsers.rejected, (state, { payload }) => {
+        state.registeredUsersLoading = false;
         state.isError = true;
         state.message = payload as string;
       });

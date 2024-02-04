@@ -3,6 +3,7 @@ import { Header } from "../components";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { useEffect } from "react";
 import { getIssues } from "../store/issues/issueSlice";
+import { getRegisteredUsers } from "../store/auth/authslice";
 
 type IProps = {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export const Layout = () => {
 
   const loadData = async () => {
     await dispatch(getIssues());
+    await dispatch(getRegisteredUsers());
   };
 
   useEffect(() => {

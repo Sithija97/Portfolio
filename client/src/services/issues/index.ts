@@ -19,8 +19,8 @@ const getIssuesByUser = async () => {
 };
 
 const updateIssue = async (payload: updateIssueParams) => {
-  const { issueId, title, description, status } = payload;
-  const issuePayload = { title, description, status };
+  const { issueId, title, description, status, assignee } = payload;
+  const issuePayload = { title, description, status, assignee };
 
   const response = await axios.patch(`${BASE_URL}/${issueId}`, issuePayload);
   return response;

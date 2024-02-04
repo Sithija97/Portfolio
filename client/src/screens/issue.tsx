@@ -2,17 +2,17 @@ import moment from "moment";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { Badge, Dropdown } from "../components";
 import { useState } from "react";
-import { RiEdit2Fill } from "react-icons/ri";
-import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ResponseStatus } from "../enums";
 import {
   getIssues,
   deleteIssue,
   updateIssue,
+  setStatus,
 } from "../store/issues/issueSlice";
 import { EDIT_ISSUE, HOME } from "../routes";
-import { options } from "../data";
+import { optionsArray as options } from "../data";
+import { IOption } from "../models";
 
 export const Issue = () => {
   const dispatch = useAppDispatch();
@@ -21,10 +21,19 @@ export const Issue = () => {
   const { selectedIssue } = useAppSelector(
     (state: RootState) => state.store.issues
   );
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { registeredUsers, user } = useAppSelector(
+    (state: RootState) => state.store.auth
+  );
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const [isOpenStatus, setIsOpenStatus] = useState<boolean>(false);
+  const [isOpenAssignee, setIsOpenAssignee] = useState<boolean>(false);
+
+  const toggleStatusDropdown = () => {
+    setIsOpenStatus(!isOpenStatus);
+  };
+
+  const toggleAssigneeDropdown = () => {
+    setIsOpenAssignee(!isOpenAssignee);
   };
 
   const deleteIssueFunc = async () => {
@@ -45,22 +54,45 @@ export const Issue = () => {
     navigate(issueDetailsRoute);
   };
 
-  const handleStatusChange = async (option: string) => {
+  const handleStatusChange = async (option: IOption) => {
+    dispatch(setStatus(option?.name));
     const response =
       selectedIssue &&
       (await dispatch(
-        updateIssue({ issueId: selectedIssue?._id, status: option })
+        updateIssue({ issueId: selectedIssue?._id, status: option?.name })
       ));
     if (response?.meta.requestStatus === ResponseStatus.FULFILLED) {
       dispatch(getIssues());
     }
   };
 
+  const handleAssigneeChange = async (option: IOption) => {
+    const response =
+      selectedIssue &&
+      (await dispatch(
+        updateIssue({ issueId: selectedIssue?._id, assignee: option?.id })
+      ));
+    if (response?.meta.requestStatus === ResponseStatus.FULFILLED) {
+      dispatch(getIssues());
+    }
+  };
+
+  const initialValue = options.find(
+    (option) => option.name === selectedIssue?.status
+  );
+  const initialUserValue = options.find((option) => option.id === user?._id);
+
   return (
     <div className="grid xl:grid-cols-4 gap-4 py-10 px-24">
       <div className="xl:col-span-3 bg-white rounded-lg">
         <div className="p-5">
-          <h3 className="text-xl font-medium pb-3">{selectedIssue?.title}</h3>
+          <span className="flex items-center justify-between">
+            <h3 className="text-xl font-medium pb-3">{selectedIssue?.title}</h3>
+            <span className="flex items-center gap-1">
+              <Badge status="edit" title="Edit" onClick={redirectToEditIssue} />
+              <Badge status="delete" title="Delete" onClick={deleteIssueFunc} />
+            </span>
+          </span>
 
           <span className="flex items-center pb-5">
             <p className="text-gray-600 text-left text-xs pr-2">
@@ -78,29 +110,23 @@ export const Issue = () => {
           </span>
         </div>
       </div>
-      <div className="bg-white rounded-lg p-5 flex xl:flex-col items-center justify-center gap-2">
+      <div className="bg-white rounded-lg p-5 flex  items-center justify-center gap-2">
         <Dropdown
-          isOpen={isOpen}
+          isOpen={isOpenStatus}
           options={options}
-          triggerLabel="Update Status"
-          initialValue={selectedIssue?.status}
-          toggleDropdown={toggleDropdown}
+          triggerLabel="Status"
+          initialValue={initialValue}
+          toggleDropdown={toggleStatusDropdown}
           onChange={handleStatusChange}
         />
-        <button
-          className="bg-blue-200 py-1 px-2 rounded-md flex items-center gap-1 w-32 justify-center"
-          onClick={redirectToEditIssue}
-        >
-          <RiEdit2Fill />
-          Edit Issue
-        </button>
-        <button
-          className="bg-red-400 py-1 px-2 rounded-md flex items-center gap-1 w-32 justify-center"
-          onClick={deleteIssueFunc}
-        >
-          <MdDelete />
-          Delete Issue
-        </button>
+        <Dropdown
+          isOpen={isOpenAssignee}
+          options={registeredUsers}
+          triggerLabel="Assignee"
+          initialValue={initialUserValue}
+          toggleDropdown={toggleAssigneeDropdown}
+          onChange={handleAssigneeChange}
+        />
       </div>
     </div>
   );

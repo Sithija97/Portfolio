@@ -202,8 +202,8 @@ const changePassword = asyncHandler(
 const getRegisteredUsers = asyncHandler(async (req: Request, res: Response) => {
   const usersResponse = await User.find().lean();
   const users = usersResponse.map((user) => ({
-    _id: user._id,
-    username: user.username,
+    id: user._id,
+    name: user.username,
   }));
   res.status(200).json(users);
 });

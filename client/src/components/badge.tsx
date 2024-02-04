@@ -1,10 +1,12 @@
 import { FC } from "react";
 
 type IProps = {
+  title?: string;
   status: string | undefined;
+  onClick?: () => void;
 };
 
-export const Badge: FC<IProps> = ({ status = "Open" }) => {
+export const Badge: FC<IProps> = ({ title, status = "Open", onClick }) => {
   const generateColorCodes = (status: string): string => {
     switch (status) {
       case "Open":
@@ -19,6 +21,12 @@ export const Badge: FC<IProps> = ({ status = "Open" }) => {
       case "Closed":
         return "bg-pink-100 text-pink-800";
 
+      case "delete":
+        return "cursor-pointer bg-pink-100 text-pink-800";
+
+      case "edit":
+        return "cursor-pointer bg-blue-100 text-blue-800";
+
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -29,8 +37,9 @@ export const Badge: FC<IProps> = ({ status = "Open" }) => {
         `px-2 inline-flex text-xs leading-5 font-semibold rounded-full ` +
         generateColorCodes(status)
       }
+      onClick={onClick}
     >
-      {status}
+      {title ? title : status}
     </span>
   );
 };

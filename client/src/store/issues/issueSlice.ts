@@ -92,6 +92,11 @@ const issuesSlice = createSlice({
     setSelectedReducer: (state, { payload }) => {
       state.selectedIssue = payload;
     },
+    setStatus: (state, { payload }) => {
+      if (state.selectedIssue) {
+        state.selectedIssue.status = payload;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -124,6 +129,6 @@ const issuesSlice = createSlice({
   },
 });
 
-export const { setSelectedReducer } = issuesSlice.actions;
+export const { setSelectedReducer, setStatus } = issuesSlice.actions;
 
 export default issuesSlice.reducer;

@@ -1,12 +1,13 @@
 import { FC, useState } from "react";
+import { IOption } from "../models";
 
 type IProps = {
   isOpen: boolean;
   triggerLabel: string;
-  initialValue: string | undefined;
-  options: string[];
+  initialValue: IOption;
+  options: IOption[];
   toggleDropdown: () => void;
-  onChange: (selectedOption: string) => void;
+  onChange: (selectedOption: IOption) => void;
 };
 
 export const Dropdown: FC<IProps> = ({
@@ -17,11 +18,9 @@ export const Dropdown: FC<IProps> = ({
   toggleDropdown,
   onChange,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string | undefined>(
-    initialValue
-  );
+  const [selectedOption, setSelectedOption] = useState<IOption>(initialValue);
 
-  const handleOptionClick = (option: string) => {
+  const handleOptionClick = (option: IOption) => {
     setSelectedOption(option);
     onChange(option);
     toggleDropdown();
@@ -34,7 +33,7 @@ export const Dropdown: FC<IProps> = ({
         type="button"
         className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-b-gray-300 rounded-md hover:bg-slate-100 focus:outline-none"
       >
-        {selectedOption ? selectedOption : triggerLabel}
+        {selectedOption ? selectedOption.name : triggerLabel}
         <svg
           className="-mr-1 ml-2 h-5 w-5"
           xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +59,7 @@ export const Dropdown: FC<IProps> = ({
                   selectedOption === option ? "bg-gray-100" : ""
                 }`}
               >
-                {option}
+                {option?.name}
               </span>
             ))}
           </div>

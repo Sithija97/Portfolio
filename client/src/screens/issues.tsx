@@ -142,7 +142,7 @@ export const Issues = () => {
                     {issue.reporter?.username}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {issue.assignee ? issue.assignee : "Unassigned"}
+                    {issue.assignee ? issue.assignee?.username : "Unassigned"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     {/* <span className="text-blue-400 hover:text-blue-600">

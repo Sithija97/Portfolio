@@ -41,6 +41,10 @@ const getAllIssues = asyncHandler(async (req: CustomRequest, res: Response) => {
       path: "reporter",
       select: "-__v, -password",
     })
+    .populate({
+      path: "assignee",
+      select: "-__v, -password",
+    })
     .lean()
     .sort("-updatedAt");
 

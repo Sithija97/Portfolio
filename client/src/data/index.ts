@@ -192,10 +192,10 @@ export const data: IIssue[] = [
 ];
 
 export const optionsArray = [
-  { name: "open", value: "Open" },
-  { name: "inProgress", value: "In Progress" },
-  { name: "resolved", value: "Resolved" },
-  { name: "closed", value: "Closed" },
+  { name: "Open", id: "1" },
+  { name: "In Progress", id: "2" },
+  { name: "Resolved", id: "3" },
+  { name: "Closed", id: "4" },
 ];
 
 export const options = ["Open", "In Progress", "Resolved", "Closed"];

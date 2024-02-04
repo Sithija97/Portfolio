@@ -40,6 +40,7 @@ export type updateIssueParams = {
   title?: string;
   description?: string;
   status?: string;
+  assignee?: string;
 };
 
 export type IUser = {
@@ -50,7 +51,7 @@ export type IUser = {
   authMethod: string;
 };
 
-export type Reporter = {
+export type ReporterNAssignee = {
   _id: string;
   username: string;
   email: string;
@@ -61,25 +62,22 @@ export type Reporter = {
 };
 
 export type RegisterdUser = {
-  _id: string;
-  username: string;
+  id: string;
+  name: string;
 };
 
 export type IIssue = {
   _id: string;
   title: string;
   description: string;
-  reporter: Reporter;
+  reporter: ReporterNAssignee;
   status: string;
-  assignee: string | null;
+  assignee: ReporterNAssignee | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type IOption = {
-  name: string;
-  value: string;
-};
+export type IOption = { id: string; name: string } | undefined;
 
 export type initialAuthState = {
   user: IUser | null;
@@ -88,6 +86,7 @@ export type initialAuthState = {
   isLoading: boolean;
   updateUserLoading: boolean;
   changePasswordLoading: boolean;
+  registeredUsersLoading: boolean;
   message: string;
   registeredUsers: RegisterdUser[];
 };
