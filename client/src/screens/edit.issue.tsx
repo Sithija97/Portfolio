@@ -10,9 +10,7 @@ export const EditIssue = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { selectedIssue } = useAppSelector(
-    (state: RootState) => state.store.issues
-  );
+  const { selectedIssue } = useAppSelector((state: RootState) => state.issues);
 
   const initialState = {
     title: selectedIssue?.title || "",

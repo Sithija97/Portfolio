@@ -10,7 +10,7 @@ export const ProfileMenu = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const user = useAppSelector((state: RootState) => state.store.auth.user);
+  const user = useAppSelector((state: RootState) => state.auth.user);
 
   const navigateToProfile = () => {};
 

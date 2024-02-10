@@ -5,7 +5,7 @@ import { RootState, useAppSelector } from "../store/store";
 import { countByStatus, percentageByStatus } from "../utils";
 
 export const Home = () => {
-  const { issues } = useAppSelector((state: RootState) => state.store.issues);
+  const { issues } = useAppSelector((state: RootState) => state.issues);
 
   const openIssueCount = countByStatus(issues, IssueTypes.OPEN);
   const inProgressCount = countByStatus(issues, IssueTypes.INPROGRESS);

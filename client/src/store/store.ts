@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import {
   persistStore,
@@ -14,22 +14,25 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/authslice";
 import issueReducer from "./issues/issueSlice";
 
-const persistConfig = {
+const persistAuthConfig = {
   key: "auth",
   storage,
   version: 1,
 };
 
-const rootReducer = combineReducers({
-  auth: authReducer,
-  issues: issueReducer,
-});
+const persistIssueConfig = {
+  key: "issues",
+  storage,
+  version: 1,
+};
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
+const persistedIssueReducer = persistReducer(persistIssueConfig, issueReducer);
 
 export const store = configureStore({
   reducer: {
-    store: persistedReducer,
+    auth: persistedAuthReducer,
+    issues: persistedIssueReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -18,11 +18,9 @@ export const Issue = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { selectedIssue } = useAppSelector(
-    (state: RootState) => state.store.issues
-  );
+  const { selectedIssue } = useAppSelector((state: RootState) => state.issues);
   const { registeredUsers, user } = useAppSelector(
-    (state: RootState) => state.store.auth
+    (state: RootState) => state.auth
   );
 
   const [isOpenStatus, setIsOpenStatus] = useState<boolean>(false);

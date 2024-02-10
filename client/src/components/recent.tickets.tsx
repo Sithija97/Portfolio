@@ -8,7 +8,7 @@ export const RecentTickets = () => {
   const navigate = useNavigate();
 
   const { issues, isGetIssuesLoading } = useAppSelector(
-    (state: RootState) => state.store.issues
+    (state: RootState) => state.issues
   );
 
   const redirectToIssues = () => navigate(ISSUES);

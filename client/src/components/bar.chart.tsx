@@ -26,7 +26,9 @@ export const BarChart = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [chartData, setChartData] = useState<any>({ datasets: [] });
   const [chartOptions, setChartOptions] = useState({});
-  const { issues } = useAppSelector((state: RootState) => state.store.issues);
+
+  const { issues } = useAppSelector((state: RootState) => state.issues);
+  console.log(issues);
 
   // Count issues for each status
   const openIssueCount = countByStatus(issues, IssueTypes.OPEN);

@@ -9,7 +9,7 @@ import { RootState, useAppSelector } from "../store/store";
 export const Header = () => {
   const navigate = useNavigate();
 
-  const user = useAppSelector((state: RootState) => state.store.auth.user);
+  const user = useAppSelector((state: RootState) => state.auth.user);
 
   const navigateToHome = () => navigate(HOME);
 

@@ -25,7 +25,7 @@ export const Issues = () => {
   const navigate = useNavigate();
 
   const { issues, isGetIssuesLoading } = useAppSelector(
-    (state: RootState) => state.store.issues
+    (state: RootState) => state.issues
   );
 
   const [currentPage, setCurrentPage] = useState(1);

@@ -10,7 +10,7 @@ type IProps = {
 };
 
 export const PrivateRoute = ({ children }: IProps) => {
-  const { user } = useAppSelector((state: RootState) => state.store.auth);
+  const { user } = useAppSelector((state: RootState) => state.auth);
 
   if (!user) {
     return <Navigate to="/login" />;
