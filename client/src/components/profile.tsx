@@ -1,7 +1,12 @@
 import { IoIosArrowForward } from "react-icons/io";
 import { Avatar } from ".";
 import { RiLogoutBoxFill } from "react-icons/ri";
-import { RootState, useAppDispatch, useAppSelector } from "../store/store";
+import {
+  RootState,
+  useAppDispatch,
+  useAppSelector,
+  persistor,
+} from "../store/store";
 import { logout } from "../store/auth/authslice";
 import { useNavigate } from "react-router-dom";
 import { LOGIN } from "../routes";
@@ -16,6 +21,7 @@ export const ProfileMenu = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    persistor.purge();
     navigate(LOGIN);
   };
 
