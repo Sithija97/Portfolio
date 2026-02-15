@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ThemeToggle } from "./components/ThemeToggle";
 import { TechBadge } from "./components/TechBadge";
@@ -55,15 +55,16 @@ export default function Home() {
             </span>
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            Hi, I&apos;m Your Name
+            Hi, I&apos;m Sithija Shehara
           </h1>
           <p className="mb-4 font-mono text-lg text-muted">
             Full Stack Developer
           </p>
           <p className="max-w-xl text-base leading-relaxed text-muted">
-            I build modern web applications with a focus on clean code,
-            performance, and user experience. Passionate about creating elegant
-            solutions to complex problems.
+            I build scalable, performant web applications with React, Next.js,
+            and modern backend technologies. Focused on clean architecture,
+            thoughtful design, and delivering products that are both technically
+            solid and genuinely useful.
           </p>
           <div className="mt-8 flex items-center gap-4">
             <a
@@ -91,6 +92,29 @@ export default function Home() {
             >
               View projects
             </a>
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+              Resume
+            </a>
           </div>
         </section>
 
@@ -102,15 +126,22 @@ export default function Home() {
           <div className="mb-6 h-px w-8 bg-border"></div>
           <div className="space-y-4 text-base leading-relaxed text-muted">
             <p>
-              I&apos;m a developer with experience in building scalable web
-              applications. My expertise lies in modern JavaScript frameworks
-              and backend technologies.
+              I&apos;m a Senior Software Engineer focused on building scalable,
+              production-ready web applications using React, Next.js, and
+              Node.js. My approach goes beyond implementation, I design systems
+              with clean architecture, predictable patterns, and long-term
+              maintainability in mind. I care deeply about performance, code
+              quality, and structuring applications in a way that remains
+              adaptable as they grow.
             </p>
             <p>
-              I enjoy working on challenging projects that push the boundaries
-              of what&apos;s possible on the web. When I&apos;m not coding,
-              you&apos;ll find me exploring new technologies or contributing to
-              open source.
+              I enjoy solving complex technical problems and turning them into
+              intuitive, reliable user experiences. With a strong systems
+              mindset and product awareness, I aim to build software that is
+              both technically robust and genuinely useful. I’m continuously
+              exploring modern web architecture and AI-driven technologies,
+              always refining my craft and pushing for better engineering
+              standards.
             </p>
           </div>
           <div className="mt-6 flex flex-wrap gap-2">
@@ -143,45 +174,61 @@ export default function Home() {
             Experience
           </h2>
           <div className="mb-8 h-px w-8 bg-border"></div>
-          <div className="space-y-10">
+          <div className="relative">
             {[
               {
-                title: "Senior Developer",
-                company: "Company Name",
-                period: "2023 — Present",
-                description:
-                  "Led development of key features for the main product. Improved performance by 40% and mentored junior developers.",
+                title: "Senior Software Engineer",
+                company: "Aventude",
+                period: "May 2023 — Present",
+                location: "Colombo, Sri Lanka",
+                highlights: [
+                  "Built reusable React UI components, improving scalability and customization.",
+                  "Developed a rich text editor with Lexical framework and analytics dashboards.",
+                  "Optimized data fetching and rendering, cutting load times significantly.",
+                  "Mentored junior developers on React/Redux, boosting team productivity.",
+                ],
               },
               {
-                title: "Full Stack Developer",
-                company: "Previous Company",
-                period: "2021 — 2023",
-                description:
-                  "Developed and maintained multiple web applications using React and Node.js. Collaborated with designers and product managers.",
+                title: "Software Engineer",
+                company: "Aventude",
+                period: "Mar 2022 — May 2023",
+                location: "Colombo, Sri Lanka",
+                highlights: [
+                  "Enhanced a low-code platform with React/TypeScript, improving usability and adoption.",
+                  "Contributed as a full-stack developer on a legal case management solution.",
+                  "Improved performance by profiling APIs and front-end rendering.",
+                  "Migrated large codebase to functional React components with hooks.",
+                ],
               },
-              {
-                title: "Junior Developer",
-                company: "First Company",
-                period: "2019 — 2021",
-                description:
-                  "Started my career building responsive websites and learning modern web development practices.",
-              },
-            ].map((job) => (
+            ].map((job, index, arr) => (
               <div
                 key={job.title}
-                className="group relative grid gap-1 sm:grid-cols-[140px_1fr]"
+                className="group relative grid gap-1 pb-10 last:pb-0 sm:grid-cols-[140px_1fr]"
               >
                 <span className="font-mono text-xs text-muted/70">
                   {job.period}
                 </span>
-                <div>
+                <div className="relative pl-6">
+                  {/* Dot */}
+                  <div className="absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-muted/50 bg-background"></div>
+                  {/* Dotted line */}
+                  {index < arr.length - 1 && (
+                    <div className="absolute left-[4.5px] top-4 bottom-[-40px] border-l-[1.5px] border-dotted border-muted/30"></div>
+                  )}
                   <h3 className="text-base font-medium text-foreground">
                     {job.title}
                   </h3>
                   <p className="mb-2 text-sm text-muted">{job.company}</p>
-                  <p className="text-sm leading-relaxed text-muted">
-                    {job.description}
-                  </p>
+                  <div className="space-y-1.5">
+                    {job.highlights.map((point) => (
+                      <p
+                        key={point}
+                        className="text-sm leading-relaxed text-muted"
+                      >
+                        {point}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
