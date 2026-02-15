@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { ThemeScript } from "./components/ThemeScript";
+import { ThemeProvider } from "@/app/components/ThemeProvider";
+import { ThemeScript } from "@/app/components/ThemeScript";
+import { PERSONAL } from "@/app/data/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Developer Portfolio",
-  description: "A minimalistic developer portfolio",
+  title: `${PERSONAL.name} — ${PERSONAL.title}`,
+  description: PERSONAL.bio,
+  openGraph: {
+    title: `${PERSONAL.name} — ${PERSONAL.title}`,
+    description: PERSONAL.bio,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${PERSONAL.name} — ${PERSONAL.title}`,
+    description: PERSONAL.bio,
+  },
 };
 
 export default function RootLayout({

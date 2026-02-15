@@ -1,13 +1,11 @@
-import { SKILLS } from "../../data/constants";
-import { TechBadge } from "../TechBadge";
+import { SKILLS } from "@/app/data/constants";
+import { TechBadge } from "@/app/components/TechBadge";
+import { SectionHeader } from "@/app/components/SectionHeader";
 
 export function AboutSection() {
   return (
     <section className="mb-28" id="about">
-      <h2 className="mb-1 text-sm font-medium uppercase tracking-widest text-muted">
-        About
-      </h2>
-      <div className="mb-6 h-px w-8 bg-border"></div>
+      <SectionHeader title="About" className="mb-6" />
       <div className="space-y-4 text-base leading-relaxed text-muted">
         <p>
           I&apos;m a Senior Software Engineer focused on building scalable,

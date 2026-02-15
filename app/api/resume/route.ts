@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import path from "path";
+import { PERSONAL } from "@/app/data/constants";
 
 export async function GET() {
   try {
     const filePath = path.join(
       process.cwd(),
       "public",
-      "Sithija_Shehara_Resume.pdf",
+      PERSONAL.resumeFilename,
     );
     const fileBuffer = await readFile(filePath);
 
@@ -15,7 +16,7 @@ export async function GET() {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition":
-          'attachment; filename="Sithija_Shehara_Resume.pdf"',
+          `attachment; filename="${PERSONAL.resumeFilename}"`,
       },
     });
   } catch {

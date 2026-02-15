@@ -1,28 +1,8 @@
-"use client";
-
-import { PERSONAL } from "../../data/constants";
-import { ArrowRightIcon, DocumentIcon } from "../Icons";
+import { PERSONAL } from "@/app/data/constants";
+import { ArrowRightIcon } from "@/app/components/Icons";
+import { ResumeButton } from "@/app/components/ResumeButton";
 
 export function HeroSection() {
-  const handleDownloadResume = async () => {
-    try {
-      const response = await fetch("/api/resume");
-      if (!response.ok) throw new Error("Resume not found");
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "Sithija_Shehara_Resume.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch {
-      alert("Resume is currently unavailable. Please try again later.");
-    }
-  };
-
   return (
     <section className="mb-28" id="hero">
       <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1">
@@ -55,13 +35,7 @@ export function HeroSection() {
         >
           View projects
         </a>
-        <button
-          onClick={handleDownloadResume}
-          className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
-        >
-          <DocumentIcon />
-          Resume
-        </button>
+        <ResumeButton />
       </div>
     </section>
   );

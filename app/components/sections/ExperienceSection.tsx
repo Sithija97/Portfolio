@@ -1,12 +1,10 @@
-import { EXPERIENCES } from "../../data/constants";
+import { EXPERIENCES } from "@/app/data/constants";
+import { SectionHeader } from "@/app/components/SectionHeader";
 
 export function ExperienceSection() {
   return (
     <section className="mb-28" id="experience">
-      <h2 className="mb-1 text-sm font-medium uppercase tracking-widest text-muted">
-        Experience
-      </h2>
-      <div className="mb-8 h-px w-8 bg-border"></div>
+      <SectionHeader title="Experience" />
       <div className="relative">
         {EXPERIENCES.map((job, index) => (
           <div
@@ -17,11 +15,9 @@ export function ExperienceSection() {
               {job.period}
             </span>
             <div className="relative pl-6">
-              {/* Dot */}
-              <div className="absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-muted/50 bg-background"></div>
-              {/* Dotted line */}
+              <div className="absolute left-0 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-muted/50 bg-background" />
               {index < EXPERIENCES.length - 1 && (
-                <div className="absolute left-[4.5px] top-4 bottom-[-40px] border-l-[1.5px] border-dotted border-muted/30"></div>
+                <div className="absolute left-[4.5px] top-4 -bottom-10 border-l-[1.5px] border-dotted border-muted/30" />
               )}
               <h3 className="text-base font-medium text-foreground">
                 {job.title}

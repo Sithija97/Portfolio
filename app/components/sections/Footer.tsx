@@ -1,4 +1,6 @@
-import { PERSONAL } from "../../data/constants";
+"use client";
+
+import { PERSONAL } from "@/app/data/constants";
 
 export function Footer() {
   return (

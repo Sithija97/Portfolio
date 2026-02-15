@@ -1,5 +1,6 @@
-import { PERSONAL } from "../../data/constants";
-import { MailIcon, GitHubIcon, LinkedInIcon, XIcon } from "../Icons";
+import { PERSONAL } from "@/app/data/constants";
+import { MailIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/app/components/Icons";
+import { SectionHeader } from "@/app/components/SectionHeader";
 
 const SOCIAL_LINKS = [
   {
@@ -31,10 +32,7 @@ const SOCIAL_LINKS = [
 export function ContactSection() {
   return (
     <section className="mb-20" id="contact">
-      <h2 className="mb-1 text-sm font-medium uppercase tracking-widest text-muted">
-        Contact
-      </h2>
-      <div className="mb-6 h-px w-8 bg-border"></div>
+      <SectionHeader title="Contact" className="mb-6" />
       <p className="mb-6 text-base leading-relaxed text-muted">
         I&apos;m always open to new opportunities and interesting projects. Feel
         free to reach out!
@@ -50,6 +48,7 @@ export function ContactSection() {
             })}
             className="rounded-xl border border-border bg-card/50 p-3 text-muted transition-all hover:border-muted/50 hover:bg-card hover:text-foreground"
             aria-label={link.label}
+            title={link.label}
           >
             {link.icon}
           </a>

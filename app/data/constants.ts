@@ -6,6 +6,7 @@ export const PERSONAL = {
   github: "https://github.com/Sithija97",
   linkedin: "https://www.linkedin.com/in/sithijashehara/",
   twitter: "https://x.com/sithijashehara",
+  resumeFilename: "Sithija_Shehara_Resume.pdf",
 } as const;
 
 export const SKILLS = [
@@ -64,37 +65,45 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  image: string;
+  image: string | null;
   github: string;
   live: string;
 }
 
 export const PROJECTS: Project[] = [
   {
-    title: "Project One",
+    title: "Lexical Rich Text Editor",
     description:
-      "A full-stack application built with Next.js and PostgreSQL. Features include real-time updates, authentication, and responsive design.",
-    tags: ["Next.js", "TypeScript", "PostgreSQL"],
+      "A React and TypeScript-based rich text editor built with Meta's Lexical framework. Features include text formatting, font customization, code blocks with syntax highlighting, lists, links, alignment controls, and undo/redo support.",
+    tags: ["React", "TypeScript", "Lexical"],
     image: "/projects/project-1.png",
-    github: "https://github.com/yourusername/project-one",
-    live: "https://project-one.vercel.app",
+    github: "https://github.com/Sithija97/Lexical-rich-text-editor-typescript",
+    live: "https://lexical-rich-text-editor-typescript.vercel.app/",
   },
   {
-    title: "Project Two",
+    title: "JS Event Loop Visualizer",
     description:
-      "An open-source tool for developers. Built with React and Node.js, with over 1k stars on GitHub.",
-    tags: ["React", "Node.js"],
+      "An interactive tool that visualizes how JavaScript handles async operations with the event loop, microtasks, and macrotasks through step-by-step simulations.",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     image: "/projects/project-2.png",
-    github: "https://github.com/yourusername/project-two",
-    live: "https://project-two.vercel.app",
+    github: "https://github.com/Sithija97/JS-Visualizer",
+    live: "https://js-visualizer-jade.vercel.app/",
   },
   {
-    title: "Project Three",
+    title: "LinkedIn Clone",
     description:
-      "A mobile-first e-commerce platform with payment integration and inventory management.",
-    tags: ["React", "MongoDB", "Stripe"],
+      "A full-stack social media platform with user authentication, posting, commenting, and real-time interactions. Features user profiles, post feeds, like/unlike functionality, and comment management.",
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "MongoDB",
+      "Clerk",
+      "Cloudinary",
+      "Tailwind CSS",
+    ],
     image: "/projects/project-3.png",
-    github: "https://github.com/yourusername/project-three",
-    live: "https://project-three.vercel.app",
+    github: "https://github.com/Sithija97/linkedin-clone",
+    live: "https://linkedin-clone-z.vercel.app/",
   },
 ];
