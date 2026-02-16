@@ -12,7 +12,7 @@ export function ProjectsSection() {
     <section className="mb-28" id="projects">
       <SectionHeader title="Projects" />
       <div className="space-y-5">
-        {PROJECTS.map((project) => (
+        {[...PROJECTS].reverse().map((project) => (
           <article
             key={project.title}
             className="group overflow-hidden rounded-xl border border-[#A7ACB0] bg-card/50 transition-all hover:bg-card dark:border-transparent dark:bg-[#2d2d2d31] dark:hover:border-transparent"
