@@ -26,7 +26,7 @@ export function ResumeButton() {
   return (
     <button
       onClick={handleDownloadResume}
-      className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+      className="inline-flex items-center gap-2 rounded-lg bg-slate-100 dark:bg-transparent border border-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card dark:border-[#212529]"
     >
       <DocumentIcon />
       Resume

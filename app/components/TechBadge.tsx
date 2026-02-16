@@ -247,7 +247,7 @@ export function TechBadge({ name }: { name: string }) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-xs ${config.color} ${config.bg} ${config.border}`}
+      className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 font-mono text-xs ${config.color} ${config.bg}`}
     >
       {config.icon}
       {name}

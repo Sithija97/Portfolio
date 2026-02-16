@@ -1,5 +1,10 @@
 import { PERSONAL } from "@/app/data/constants";
-import { MailIcon, GitHubIcon, LinkedInIcon, XIcon } from "@/app/components/Icons";
+import {
+  MailIcon,
+  GitHubIcon,
+  LinkedInIcon,
+  XIcon,
+} from "@/app/components/Icons";
 import { SectionHeader } from "@/app/components/SectionHeader";
 
 const SOCIAL_LINKS = [
@@ -46,7 +51,7 @@ export function ContactSection() {
               target: "_blank",
               rel: "noopener noreferrer",
             })}
-            className="rounded-xl border border-border bg-card/50 p-3 text-muted transition-all hover:border-muted/50 hover:bg-card hover:text-foreground"
+            className="rounded-xl bg-card/50 p-3 text-muted transition-all hover:bg-card hover:text-foreground"
             aria-label={link.label}
             title={link.label}
           >

@@ -4,7 +4,7 @@ import { PERSONAL } from "@/app/data/constants";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border pt-8">
+    <footer className="border-t border-[#A7ACB0] dark:border-[#212529] pt-8">
       <div className="flex items-center justify-between">
         <p className="text-xs text-muted">
           &copy; {new Date().getFullYear()} {PERSONAL.name}

@@ -5,12 +5,12 @@ import { ResumeButton } from "@/app/components/ResumeButton";
 export function HeroSection() {
   return (
     <section className="mb-28" id="hero">
-      <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1">
+      <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-transparent border border-transparent dark:border-[#212529] bg-card px-3 py-1">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
         </span>
-        <span className="text-xs font-medium text-muted">
+        <span className="text-xs font-medium text-muted ">
           Available for work
         </span>
       </div>
@@ -31,7 +31,7 @@ export function HeroSection() {
         </a>
         <a
           href="#projects"
-          className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+          className="inline-flex items-center gap-2 rounded-lg bg-slate-100 dark:bg-transparent border border-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card dark:border-[#212529]"
         >
           View projects
         </a>

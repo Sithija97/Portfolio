@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { PROJECTS } from "@/app/data/constants";
-import { ImagePlaceholderIcon, GitHubIcon, ExternalLinkIcon } from "@/app/components/Icons";
+import {
+  ImagePlaceholderIcon,
+  GitHubIcon,
+  ExternalLinkIcon,
+} from "@/app/components/Icons";
 import { SectionHeader } from "@/app/components/SectionHeader";
 
 export function ProjectsSection() {
@@ -11,9 +15,9 @@ export function ProjectsSection() {
         {PROJECTS.map((project) => (
           <article
             key={project.title}
-            className="group overflow-hidden rounded-xl border border-border bg-card/50 transition-all hover:border-muted/50 hover:bg-card dark:border-transparent dark:hover:border-transparent"
+            className="group overflow-hidden rounded-xl border border-[#A7ACB0] bg-card/50 transition-all hover:bg-card dark:border-transparent dark:bg-[#2d2d2d31] dark:hover:border-transparent"
           >
-            <div className="relative aspect-video w-full overflow-hidden border-b border-border bg-muted/10">
+            <div className="relative aspect-video w-full overflow-hidden  bg-muted/10 dark:border-transparent">
               {project.image ? (
                 <Image
                   src={project.image}
